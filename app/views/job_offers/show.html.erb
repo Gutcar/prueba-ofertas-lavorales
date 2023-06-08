@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <h2>Puesto: <%= @job_offer.job %></h2><br>
+    <p style="font-size: 1.3rem;"><%= @job_offer.description %></p>
+    <div class="border-bottom w-100 mb-4"></div>
+    <% unless admin_user? %>
+      <div class="d-flex justify-content-center">
+        <%= button_to "POSTULAR", associate_job_offer_path(@job_offer), method: :post, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <% if admin_user? %>
+      <div class="d-flex justify-content-end">
+        <%= link_to "Editar", edit_job_offer_path(@job_offer), class: "btn btn-outline-warning me-3" %>
+        <%= button_to "Borrar", @job_offer, method: :delete, class: "btn btn-outline-danger" %>
+      </div><br><br>
+
+      <h4 class="mb-4">Usuarios que postularon a este puesto</h4>
+      <% if @job_offer.users.length == 0 %>
+        <p>Ningún usuario ha postulado a este puesto.</p>
+      <% else %>
+        <% @job_offer.users.each_with_index do |user, i| %>
+          <% if i != 0 %>
+            <div class="border-top w-100"></div>
+          <% end %>
+          <div class="mb-3">
+            <div class="d-flex align-items-center">
+              <%= image_tag user.avatar, class: "rounded-circle m-2", style: "width: 50px;" %>
+              <h5><%= user.name %></h5>
+            </div>
+            <p><%= user.about %></p>
+            <div class="d-flex justify-content-center">
+              <p style="font-size: 18px" class="me-4"><i class="fa-solid fa-envelope"></i> <%= user.email %></p>
+              <p style="font-size: 18px"><i class="fa-solid fa-phone"></i> <%= user.phone %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+  

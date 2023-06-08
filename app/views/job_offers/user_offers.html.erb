@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <% current_user.job_offers.each do |job_offer| %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h3 class="card-title"><strong><%= job_offer.job %></strong></h3>
+                    <p class="card-text"><%= job_offer.description %></p>
+                    <div class="d-flex justify-content-end">
+                        <%= link_to "Ver más", job_offer, class: "btn btn-primary" %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

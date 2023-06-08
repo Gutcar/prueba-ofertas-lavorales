@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container-fluid">
+            <%= link_to "Job Hunt", root_path, class: "navbar-brand text-white" %>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ">
+                    <% unless admin_user? %>
+                        <li class="nav-item">
+                        <%= link_to "Mis postulaciones", user_offers_job_offers_path, class: "nav-link text-white" %>
+                        </li>
+                    <% end %>
+                    <li class="nav-item">
+                        <a href="<%= edit_user_registration_path %>" class="nav-link text-white">Editar mi perfil</a>
+                    </li>
+                    <% if admin_user? %>
+                        <li class="nav-item">
+                            <%= link_to "Registrar usuario", new_user_registration_path, class: "nav-link text-white" %>
+                        </li>
+                    <% end %>
+                    <li class="nav-item">
+                        <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "nav-link text-white" %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> 
+<% end %>

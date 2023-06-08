@@ -1,0 +1,11 @@
+<div id="<%= dom_id job_offer %>">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h3 class="card-title"><strong><%= job_offer.job %></strong></h3>
+      <p class="card-text"><%= job_offer.description %></p>
+      <div class="d-flex justify-content-end">
+        <%= link_to "Ver más", job_offer, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
